@@ -10,7 +10,7 @@
 
 ## API Usage
 
-Apis can be found in the api folder. 
+Apis can be found in the api folder. Apis are also hosted at http://inviolate-bureau.000webhostapp.com/
 
 Rename dummy_DAO.php to DAO.php to test the apis on your local system
 
