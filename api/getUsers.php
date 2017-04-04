@@ -57,7 +57,7 @@
 			$hashedSecret = $data[0]->{'secret'};
 			if ($em->compareHash($secret, $hashedSecret)) {
 
-				$result = $conn->query("SELECT username, answer, score FROM user WHERE gameId = $gameId");
+				$result = $conn->query("SELECT username, answer, score FROM user WHERE gameId = $gameId ORDER BY timeJoined");
 				echo json_encode($result);
 				$cacheData = true; 
 
