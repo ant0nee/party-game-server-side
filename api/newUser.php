@@ -50,7 +50,7 @@
 		$chars = array_merge(range('A','Z'), range('a','z'), range('0','9'));
 		$sessionId = $m->getSalt(255,$chars);
 		$sessionIdHashed = $em->hashString($sessionId);
-		$result = $conn->update("INSERT INTO user (gameId, username, score, sessionId, answer, timeJoined) VALUES ($gameId,\"$name\", 0,\"$sessionIdHashed\",\"\",NOW())");
+		$result = $conn->update("INSERT INTO user (gameId, username, score, sessionId, answer, timeJoined) VALUES ($gameId,\"$name\", 0,\"$sessionIdHashed\",\" \",NOW())");
 
 		if (!$result) {
 
@@ -71,7 +71,7 @@
 			array(
 
 				success => true,
-				userId => $conn->getLastId(),
+				gameId => $gameId,
 				sessionId => $sessionId
 
 			)

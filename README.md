@@ -24,7 +24,6 @@ inputs:
   code - gameCode for the game (string)
 outputs: 
   success - true if operation successful (boolean)
-  userId - the ID number for the user (int)
   sessionId - the sessionID for the user (String)
 result: 
   User created and session for that user started

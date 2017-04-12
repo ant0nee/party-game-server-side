@@ -28,7 +28,6 @@
 	$cacheData = false; 
 	require "DAO.php";
 	$conn = new DAO(); 
-	header("Access-Control-Allow-Origin: http://localhost:8001", false);
 	if (!isset($_GET["username"]) && !isset($_GET["gameId"])) {
 
 		echo json_encode(
@@ -46,21 +45,28 @@
 		$cacheData = true; 
 		$username = htmlspecialchars($_GET["username"]);
 		$gameId = htmlspecialchars($_GET["gameId"]);
-		$data = $conn->query("SELECT answer FROM user WHERE username = \"$username\" && gameId = \"$gameId\"");
-		if (isset($data[0]->{'answer'})) {
+		$data = $conn->query("SELECT answer, score FROM user WHERE username = \"$username\" && gameId = \"$gameId\"");
+		if (isset($data[0]->{'score'})) {
 
-			$canAnswer = false; 
-			if ($data[0]->{'answer'} == null && $data[0]->{'answer'}!="") {
+			if ($data[0]->{'answer'} != " ") {
 
-				$canAnswer = true; 
+				echo json_encode(
+				array(
 
-			}
+					success => true,
+					canSubmit => is_null($data[0]->{'answer'})
+
+				)
+				, JSON_PRETTY_PRINT);
+				die();
+
+			} 
 
 			echo json_encode(
 			array(
 
 				success => true,
-				canSubmit => $canAnswer
+				canSubmit => false,
 
 			)
 			, JSON_PRETTY_PRINT);
