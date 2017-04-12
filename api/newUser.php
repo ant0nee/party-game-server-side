@@ -8,8 +8,6 @@
 	$m = new Methods(); 
 	$em = new EncryptionManager();
 
-	header("Access-Control-Allow-Origin: http://localhost:8001", false);
-
 	if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
 		echo json_encode(
@@ -52,7 +50,7 @@
 		$chars = array_merge(range('A','Z'), range('a','z'), range('0','9'));
 		$sessionId = $m->getSalt(255,$chars);
 		$sessionIdHashed = $em->hashString($sessionId);
-		$result = $conn->update("INSERT INTO user (gameId, username, score, sessionId, answer, timeJoined) VALUES ($gameId,\"$name\", 0, \"$sessionIdHashed\",\"\",NOW()");
+		$result = $conn->update("INSERT INTO user (gameId, username, score, sessionId, answer, timeJoined) VALUES ($gameId,\"$name\", 0,\"$sessionIdHashed\",\"\",NOW())");
 
 		if (!$result) {
 
@@ -60,7 +58,7 @@
 				array(
 
 					success => false,
-					reason => "username already eists"
+					reason => "username already exists"
 
 				)
 			, JSON_PRETTY_PRINT);
