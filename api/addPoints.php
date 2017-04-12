@@ -24,7 +24,7 @@
 	}
 
 	$gameId = htmlspecialchars($_GET["gameId"]);
-	$username = $_GET["username"];
+	$username = htmlspecialchars($_GET["username"]);
 	$secret = $_GET["secret"];
 	$points = htmlspecialchars($_GET["points"]);
 	$data = $conn->query("SELECT secret FROM game WHERE gameId = $gameId");

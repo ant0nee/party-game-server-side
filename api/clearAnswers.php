@@ -26,13 +26,22 @@
 	$gameId = htmlspecialchars($_GET["gameId"]);
 	$secret = $_GET["secret"];
 	$data = $conn->query("SELECT secret FROM game WHERE gameId = $gameId");
+	if (isset($_GET["answerType"])) {
+
+		$answerType = htmlspecialchars($_GET["answerType"]));
+
+	} else {
+
+		$answerType = null; 
+
+	}
 	
 	if (isset($data[0]->{'secret'})) {
 
 		$hashedSecret = $data[0]->{'secret'};
 		if ($em->compareHash($secret, $hashedSecret)) {
 
-			$conn->query("UPDATE user SET answer = null WHERE gameId = $gameId");
+			$conn->query("UPDATE user SET answer = null, answerType = $answerType WHERE gameId = $gameId");
 			echo json_encode(
 				array(
 

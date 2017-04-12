@@ -39,6 +39,7 @@ inputs:
 outputs: 
   success - true if operation successful (boolean)
   canSubmit - true if the user is able to submit an answer (if the answer is null)
+  answerType - a number to represent the format the answer should be submitted as
 ```
 #### setAnswer.php
 ```
@@ -101,6 +102,7 @@ method: GET
 inputs: 
   gameId - the ID number for the game (int)
   secret - a secret identifier for the game (String)
+  answerType (optional) - a number for the format the answer should appear in (int)
 outputs: 
   success - true if operation successful (boolean)
 result: 

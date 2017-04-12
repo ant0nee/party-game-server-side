@@ -45,7 +45,7 @@
 		$cacheData = true; 
 		$username = htmlspecialchars($_GET["username"]);
 		$gameId = htmlspecialchars($_GET["gameId"]);
-		$data = $conn->query("SELECT answer, score FROM user WHERE username = \"$username\" && gameId = \"$gameId\"");
+		$data = $conn->query("SELECT answer, score, answerType FROM user JOIN game ON game.gameId = user.gameId WHERE username = \"$username\" && user.gameId = \"$gameId\"");
 		if (isset($data[0]->{'score'})) {
 
 			if ($data[0]->{'answer'} != " ") {
@@ -54,7 +54,8 @@
 				array(
 
 					success => true,
-					canSubmit => is_null($data[0]->{'answer'})
+					canSubmit => is_null($data[0]->{'answer'}),
+					answerType => $data[0]->{'answerType'}
 
 				)
 				, JSON_PRETTY_PRINT);
