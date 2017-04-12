@@ -47,7 +47,7 @@
 
 		if ($em->compareHash($sessionId, $hashedId)) {
 
-			$result = $conn->update("UPDATE user SET answer = \"$answer\" where username = \"$username\" AND gameId = $gameId AND answer = null");
+			$result = $conn->update("UPDATE user SET answer = \"$answer\" where username = \"$username\" AND gameId = $gameId AND ISNULL(answer)");
 
 			if (!$result) {
 
