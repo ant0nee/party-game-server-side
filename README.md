@@ -1,6 +1,7 @@
 # party-game
 ## Software
 * The game should allow unlimited players, played using a website
+* The main game should be created on one device, either as a pc application or website
 
 ## Design
 
